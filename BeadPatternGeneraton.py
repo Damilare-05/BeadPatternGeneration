@@ -27,7 +27,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ------------------------ HELPERS ------------------------
-def extract_color_palette(image, k=6):
+def extract_color_palette(image, k=5):
     pixels = image.reshape(-1, 3).astype(np.float32)
     kmeans = KMeans(n_clusters=k, random_state=42)
     kmeans.fit(pixels)
@@ -109,13 +109,17 @@ def plot_grid(grid, title="Bead Pattern"):
     ax.set_ylim(0, rows)
     for i in range(rows):
         for j in range(cols):
-            color = np.array(grid[i][j]) / 255
+            cell = grid[i][j]
+            if cell is None:
+                continue
+            color = np.array(cell) / 255
             circle = patches.Circle((j + 0.5, rows - i - 0.5), 0.45, color=color)
             ax.add_patch(circle)
     ax.set_aspect('equal')
     ax.axis('off')
     ax.set_title(title)
     return fig
+
 
 def plot_linear_pattern(pattern, title="1D Pattern"):
     fig, ax = plt.subplots(figsize=(len(pattern), 2))
