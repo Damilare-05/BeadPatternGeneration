@@ -27,7 +27,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ------------------------ HELPERS ------------------------
-def extract_color_palette(image, k=5):
+def extract_color_palette(image, k=6):
     pixels = image.reshape(-1, 3).astype(np.float32)
     kmeans = KMeans(n_clusters=k, random_state=42)
     kmeans.fit(pixels)
@@ -148,7 +148,7 @@ if uploaded_file is not None:
     palette = extract_color_palette(image, k=5)
 
     # Display image and palette
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="Uploaded Image", use_container_width=True)
     st.subheader("Extracted Color Palette")
     fig_palette = plt.figure(figsize=(5, 1))
     ax = fig_palette.add_subplot(111)
