@@ -165,16 +165,16 @@ if uploaded_file is not None:
 
     # Pattern Settings
     st.sidebar.subheader("Pattern Settings")
-    pattern_type = st.sidebar.radio("Choose a layout style:", ["1D String / Bracelet Layout", "2D Woven Surface / Grid Layout"])
-    st.markdown("""
+    pattern_type = st.sidebar.radio("Choose a layout style:", ["1D Layout", "2D Layout"])
+    st.sidebar.markdown("""
     - **1D String / Bracelet Layout**: Suitable for necklaces, bracelets, and linear beadwork.
     - **2D Woven Surface / Grid Layout**: Ideal for wall hangings, mats, and surface designs.
     """)
-    if pattern_type == "2D Woven Surface / Grid Layout":
+    if pattern_type == "2D Layout":
         symmetry_type = st.sidebar.selectbox("2D Symmetry Type", ["Vertical", "Horizontal", "Radial", "Random"])
     else:
         symmetry_type = None
-    if pattern_type == "1D String / Bracelet Layout":
+    if pattern_type == "1D Layout":
         pattern_style = st.sidebar.selectbox("1D Pattern Style", ["symmetric", "alternating", "gradient", "zigzag", "burst"])
     else:
         pattern_style = None
