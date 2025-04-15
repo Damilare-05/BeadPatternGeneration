@@ -164,23 +164,23 @@ if uploaded_file is not None:
     st.pyplot(fig_palette)
 
     # Pattern Settings
-    st.subheader("Pattern Settings")
-    pattern_type = st.radio("Choose a layout style:", ["1D String / Bracelet Layout", "2D Woven Surface / Grid Layout"])
+    st.sidebar.subheader("Pattern Settings")
+    pattern_type = st.sidebar.radio("Choose a layout style:", ["1D String / Bracelet Layout", "2D Woven Surface / Grid Layout"])
     st.markdown("""
     - **1D String / Bracelet Layout**: Suitable for necklaces, bracelets, and linear beadwork.
     - **2D Woven Surface / Grid Layout**: Ideal for wall hangings, mats, and surface designs.
     """)
     if pattern_type == "2D Woven Surface / Grid Layout":
-        symmetry_type = st.selectbox("2D Symmetry Type", ["Vertical", "Horizontal", "Radial", "Random"])
+        symmetry_type = st.sidebar.selectbox("2D Symmetry Type", ["Vertical", "Horizontal", "Radial", "Random"])
     else:
         symmetry_type = None
     if pattern_type == "1D String / Bracelet Layout":
-        pattern_style = st.selectbox("1D Pattern Style", ["symmetric", "alternating", "gradient", "zigzag", "burst"])
+        pattern_style = st.sidebar.selectbox("1D Pattern Style", ["symmetric", "alternating", "gradient", "zigzag", "burst"])
     else:
         pattern_style = None
-    rows = st.slider("Rows (for 2D)", 4, 20, 8)
-    cols = st.slider("Columns (for 2D / Length for 1D)", 4, 20, 8)
-    bead_cost = st.number_input("Bead Cost ($)", min_value=0.01, max_value=1.00, value=BEAD_COST_DEFAULT)
+    rows = st.sidebar.slider("Rows (for 2D)", 4, 20, 8)
+    cols = st.sidebar.slider("Columns (for 2D / Length for 1D)", 4, 20, 8)
+    bead_cost = st.sidebar.slider('Bead Cost ($)', 0.001, 1.0, BEAD_COST_DEFAULT)
 
     # Generate pattern
     if pattern_type == "2D Woven Surface / Grid Layout":
